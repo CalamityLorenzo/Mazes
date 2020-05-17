@@ -36,8 +36,8 @@ module Cells =
    let West itm cell = 
              {itm with West = cell}
     
-   let MapLocation itm Nrth Est Sth Wst =
-    {itm with North = Nrth; East = Est; South = Sth; West=Wst }
+   let MapLocation itm nrth est sth wst =
+    {itm with North = nrth; East = est; South = sth; West=wst }
    let neighbours  itm  = 
      let addIfFound (opt:Cell option) (lst:Cell list) = 
        match opt with 
