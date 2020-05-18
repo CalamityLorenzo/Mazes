@@ -1,14 +1,14 @@
 namespace MazeDef
 open System
+    type Grid ={ Row:int; Column:int; Cells:Cell [,]; Size:int}
 
-module Grid =
+module Grids =
     let private random = Random()
-    type T ={ Row:int; Column:int; Cells:Cell [,]; Size:int}
 
     let private prepGrid rows cols =
        {Row=rows; Column=cols; Size=rows*cols; Cells =Array2D.init rows cols (fun rows cols-> Cells.newCell rows cols)}
 
-    let private findCell row col (grid:T) =
+    let private findCell row col grid  =
         if row < 0 || row >= grid.Row then None
         elif col < 0 ||  col >= grid.Column then None
         else Some grid.Cells.[row,col]

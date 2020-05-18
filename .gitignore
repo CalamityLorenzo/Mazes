@@ -3,3 +3,5 @@
 **/bin/Debug
 **/obj
 **/.ionide
+.fake
+.ionide

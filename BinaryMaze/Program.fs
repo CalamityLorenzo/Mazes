@@ -9,8 +9,8 @@ let from whom =
 [<EntryPoint>]
 let main argv =
     
-    let grid = Grid.PrepareGrid 4 4
-    let cell = Grid.RandomCell grid
+    let grid = Grids.PrepareGrid 4 4
+    let cell = Grids.RandomCell grid
 
     for i in 0..3 do
       for j in 0..3 do
