@@ -26,6 +26,20 @@ module Grids =
         let c = random.Next grid.Column
         grid.Cells.[r,c]
     
+    let matchCell (cell1:Cell) (cell2:Cell) = 
+        (cell1.Row = cell2.Row && cell1.Column = cell2.Column)
+
+    let LinkCell grid cell (neighbour:Cell) = 
+        // update the cells
+        let nCell = grid.Cells.[neighbour.Row, neighbour.Column]
+        let updatedCells = Cells.link cell nCell
+        {grid with Cells  =  grid.Cells |> Array2D.map (fun c-> if (matchCell c cell) 
+                                                                    then fst updatedCells 
+                                                                elif (matchCell c neighbour) 
+                                                                    then snd updatedCells 
+                                                                else c)}
+                                                                
+
     let EveryRow grd = 
         seq{
             for r in 0..grd.Row do

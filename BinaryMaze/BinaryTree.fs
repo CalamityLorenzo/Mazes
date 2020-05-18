@@ -1,4 +1,4 @@
-namespace MazeDefs
+namespace MazeDef
 open System
 // WE cana move North or East.gri
 // Fpr each cell work out the north./east and then randomly decide which to use
@@ -10,12 +10,25 @@ module BinaryTree =
             match(direction) with
             | Some dir -> dir::acc
             | None -> acc
-        let ac1 = getNeighbour cell []
-        getNeighbour cell ac1
-    let linkCells cell = 
+        let ac1 = getNeighbour cell.North []
+        getNeighbour cell.East ac1
+   
+    let pickNeighbour cell =
         let neighbours = GetNorthEastNeighbours cell
-        let idx = rando.Next(neighbours.Length)
-        let neighbout = neighbours.[idx]
-        Cells.link cell neighbout
+        match(neighbours.Length) with
+        | len when len>0 ->
+                       let idx = rando.Next(neighbours.Length)
+                       // Hello there new neighbour
+                       Some neighbours.[idx]
+        | _ -> None
+
     let Build grd = 
-       grd.Cells |> Array2D.iter (fun g-> linkCells g)
+        let mutable g = grd
+        for x in 0..grd.Row-1 do
+            for y in 0..grd.Column-1 do
+                let cell = g.Cells.[x,y]
+                let neighbour = pickNeighbour cell
+                match (neighbour) with
+                | Some nCell -> g <- Grids.LinkCell g cell nCell
+                | None -> ()
+        g

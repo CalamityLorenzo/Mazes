@@ -10,9 +10,8 @@ let from whom =
 let main argv =
     
     let grid = Grids.PrepareGrid 4 4
-    let cell = Grids.RandomCell grid
+    let binaryGrid = BinaryTree.Build grid
 
-    for i in 0..3 do
-      for j in 0..3 do
-        printfn "%d row:%d col:%d" i (grid.Cells.[i,j].Row) grid.Cells.[i,j].Column 
+    printfn "%s" (MazeConsoleDisplay.ToConsole binaryGrid)
+
     0 // return an integer exit code

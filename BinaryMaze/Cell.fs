@@ -1,6 +1,8 @@
 namespace MazeDef
 open System.Collections.Generic
 
+// Links are bi-drirectional, 
+// update in one. Must update the other.
 type Cell =
         {
             Row:int
@@ -23,10 +25,17 @@ module Cells =
         Links=Set.empty
          }
      
-   let link (itm:Cell) (cell:Cell) =
-        {itm with Links = itm.Links |> Set.add cell }
-   let unlink itm cell  = 
-        {itm with Links = itm.Links |> Set.remove cell }
+   let link cell link =
+       let replaceCell =  {cell with Links = cell.Links |> Set.add link }
+       let replaceLink = {link with Links = link.Links |> Set.add cell}
+       (replaceCell, replaceLink)
+       //replaceCell::replaceLink :: allCells |> List.filter (fun f -> not(f = cell) || not(f= link))
+
+   let unlink cell link  = 
+      let replaceCell =  {cell with Links = cell.Links |> Set.remove link}
+      let replaceLink =  {link with Links = link.Links |> Set.remove cell}
+      (replaceCell,replaceLink)
+      
    let North itm cell = 
          {itm with North = cell}
    let East itm cell = 
