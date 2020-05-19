@@ -24,8 +24,14 @@ module Cells =
         West=None;
         Links=Set.empty
          }
-     
+    
+   let linked cell isLinked =
+        match (isLinked) with
+        | Some linked -> (Set.filter (fun s-> s.Row = linked.Row && s.Column = linked.Column ) cell.Links).Count > 0
+        | None -> false
+
    let link cell link =
+        
        let replaceCell =  {cell with Links = cell.Links |> Set.add link }
        let replaceLink = {link with Links = link.Links |> Set.add cell}
        (replaceCell, replaceLink)

@@ -9,9 +9,17 @@ let from whom =
 [<EntryPoint>]
 let main argv =
     
-    let grid = Grids.PrepareGrid 4 4
-    let binaryGrid = BinaryTree.Build grid
-
-    printfn "%s" (MazeConsoleDisplay.ToConsole binaryGrid)
-
+    let mutable looper = true
+    while looper do
+        let grid = Grids.PrepareGrid 4 4
+        let binaryGrid = BinaryTree.Build grid
+        let sideWinderGrid = Sidewinder.Build grid
+        printfn "%s" (MazeConsoleDisplay.ToConsole binaryGrid)
+        printfn "\n"
+        printfn "%s" (MazeConsoleDisplay.ToConsole sideWinderGrid)
+        let key = Console.ReadKey()
+        if (key.Key = ConsoleKey.Escape) then
+            looper <- false
+        else
+            Console.Clear()
     0 // return an integer exit code
