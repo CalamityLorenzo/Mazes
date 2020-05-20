@@ -5,3 +5,5 @@
 **/.ionide
 .fake
 .ionide
+**/.vs
+
