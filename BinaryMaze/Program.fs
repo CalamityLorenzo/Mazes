@@ -17,6 +17,8 @@ let main argv =
         printfn "%s" (MazeConsoleDisplay.ToConsole binaryGrid)
         printfn "\n"
         printfn "%s" (MazeConsoleDisplay.ToConsole sideWinderGrid)
+        MazeBitmaps.ToImage binaryGrid @"D:\OtherCode\Mazes\ImageViewer\binary.png" 50
+        MazeBitmaps.ToImage sideWinderGrid @"D:\OtherCode\Mazes\ImageViewer\SideWinder.png" 50
         let key = Console.ReadKey()
         if (key.Key = ConsoleKey.Escape) then
             looper <- false
