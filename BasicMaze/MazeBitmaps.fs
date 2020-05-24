@@ -5,17 +5,14 @@ open System
     
     let paintImage image (rect:Rectangle) colour =
         using (Graphics.FromImage(image)) (fun gfx->
-            let broosh = new SolidBrush(colour)
-            gfx.FillRectangle(broosh, rect)
-        )
+            use broosh = new SolidBrush(colour)
+            gfx.FillRectangle(broosh, rect))
+
     let drawLine image (x1:int) (y1:int) (x2:int) (y2:int) (colour:Color) = 
         using (Graphics.FromImage(image)) (fun gfx->
                 use pen = new Pen(colour)
                 gfx.DrawLine(pen, x1, y1, x2, y2)
             )
-    let private olddrawWall (image:Bitmap) x y width height (colour:Color) = 
-        let rect = Rectangle (x,y, width, height)
-        paintImage image rect colour
 
     let private paintBackground image colour =
         paintImage image (Rectangle(0,0,image.Width, image.Height)) colour
@@ -26,8 +23,6 @@ open System
         | None ->  f()
 
     let ToImage (grd:Grid) (path:string) cellSize = 
-        
-        
         // Our image to be created
         let img = new Bitmap(cellSize* grd.Row+1, cellSize * grd.Column+1)
         let BackgroundColour = Color.White;
