@@ -33,7 +33,7 @@ module Grids =
         // update the cells
         let nCell = grid.Cells.[neighbour.Row, neighbour.Column]
         let updatedCells = Cells.link cell nCell
-        {grid with Cells  =  grid.Cells |> Array2D.map (fun c-> if (matchCell c cell) 
+        {grid with Cells = grid.Cells |> Array2D.map (fun c-> if (matchCell c cell) 
                                                                     then fst updatedCells 
                                                                 elif (matchCell c neighbour) 
                                                                     then snd updatedCells 

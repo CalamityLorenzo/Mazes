@@ -31,7 +31,6 @@ module Cells =
         | None -> false
 
    let link cell link =
-        
        let replaceCell =  {cell with Links = cell.Links |> Set.add link }
        let replaceLink = {link with Links = link.Links |> Set.add cell}
        (replaceCell, replaceLink)
@@ -43,7 +42,7 @@ module Cells =
       (replaceCell,replaceLink)
       
    let North itm cell = 
-         {itm with North = cell}
+             {itm with North = cell}
    let East itm cell = 
              {itm with East = cell}
    let South itm cell = 
