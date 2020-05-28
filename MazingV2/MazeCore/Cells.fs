@@ -1,17 +1,5 @@
 module MazeCore.Cells
-
-type R0C0 = {Row:int; Column:int}
-
-type Cell = 
-    {
-        Position:R0C0
-        North:R0C0 option
-        South:R0C0 option
-        East:R0C0 option
-        West:R0C0 option
-        Links:R0C0 Set // All the joined cells for a maze[You can plot a route here].
-    }
-   
+    open MazeCore.Models 
 
     module Cells =
         let inline (=) (x:Cell) (y:Cell) = x.Position = y.Position

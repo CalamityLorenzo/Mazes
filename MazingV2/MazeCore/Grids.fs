@@ -1,11 +1,11 @@
 module MazeCore.Grids
+open MazeCore.Models
 open Cells
 open System
 
-    type Grid = {Rows:int; Columns:int; Cells:Cell []; Size:int}
 
 module Grids =
-    let private rando = Random()]
+    let private rando = Random()
 
     let fetchArrayRef rows row col = 
         row*rows+(col+1)
