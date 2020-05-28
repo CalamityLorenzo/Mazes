@@ -6,5 +6,6 @@
     <Compile Include="Models.fs" />
     <Compile Include="Cells.fs" />
     <Compile Include="Grids.fs" />
+    <Compile Include="BinaryTreeMaze.fs" />
   </ItemGroup>
 </Project>

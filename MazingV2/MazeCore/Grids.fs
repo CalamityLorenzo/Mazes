@@ -11,12 +11,12 @@ module Grids =
         row*rows+(col+1)
     let private createGrid rows cols= 
         {Rows= rows; Columns = cols; Size=rows*cols; Cells = Array.init (rows*cols) (fun i -> Cells.newCell {Row=(i/rows);Column=(i%rows)})}
-    let findCell grid row col  = 
-        if row<0 || row >= grid.Rows then None
-        elif col<0 || col >= grid.Columns then None
-        else Some grid.Cells.[row*grid.Rows+(col+1)]
+    let findCell grid position  = 
+        if position.Row<0 || position.Column >= grid.Rows then None
+        elif position.Column<0 || position.Column>= grid.Columns then None
+        else Some grid.Cells.[position.Row*grid.Rows+(position.Column+1)]
     let cellPosition grid row col = 
-        match findCell grid row col with
+        match findCell grid {Row=row;Column=col} with
         | Some c-> Some c.Position
         | None -> None
     let ConfigureCells grid =
