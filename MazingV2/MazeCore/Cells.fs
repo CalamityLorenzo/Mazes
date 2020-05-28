@@ -12,7 +12,10 @@ type Cell =
         Links:R0C0 Set // All the joined cells for a maze[You can plot a route here].
     }
    
+
     module Cells =
+        let inline (=) (x:Cell) (y:Cell) = x.Position = y.Position
+
         let newCell {Row=r; Column=c} = 
             {
                 Position= {Row=r; Column=c}
@@ -51,4 +54,7 @@ type Cell =
                      {cell with West = ref}        
         let MapLayout cell nrth est sth wst =
                      {cell with North = nrth; East = est; South = sth; West=wst }
+        
+        let MatchCell c1 c2 = 
+            c1 = c2
         
